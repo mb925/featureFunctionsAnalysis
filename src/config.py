@@ -3,5 +3,5 @@ import os
 absolute = os.path.abspath(os.getcwd())
 
 data = {
-    "data": absolute + '/data/'
+    "data": absolute + '/../data/'
 }
