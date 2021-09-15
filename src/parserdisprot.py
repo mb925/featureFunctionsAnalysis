@@ -5,6 +5,22 @@ import json
 import numpy as np
 from pandas import read_csv
 
+def filter_tsv():
+    print(cfg.data['disprot'])
+    df = read_csv(cfg.data['disprot'] + 'disprot_2021.csv', sep='\t')[['acc', 'disprot_id', 'start', 'end', 'term', 'ec', 'region_sequence']]
+    df['sequence_length'] = df['region_sequence'].apply(lambda x: len(x))
+    df = df.drop(['region_sequence'], axis=1)
+    df['term_id'] = df['term'].apply(lambda x: x.split(':')[2])
+    df['ec_id'] = df['ec'].apply(lambda x: x.split(':')[2])
+    df = df.drop(['term'], axis=1)
+    df = df.drop(['ec'], axis=1)
+    df = df.drop_duplicates(subset=['acc', 'disprot_id', 'start', 'end', 'term_id']) # in case there are duplicates because of different pubmed id
+    df.rename(columns={'acc': 'UniProt_id', 'disprot_id': 'DisProt_id'}, inplace=True)
+    file = cfg.data['disprot'] + 'disprot_regions.csv'
+    df.to_csv(file, mode='a', header=(not os.path.exists(file)), sep='\t', index=False)
+
+    print(df)
+
 def json_to_csv():
     with open(cfg.data['disprot'] + 'disprot_regions.json') as json_file:
         data = json.load(json_file)
@@ -75,6 +91,6 @@ def start_end_to_residue():
             })
             df_residues = df_residues.append(df_el)
             print(df_el)
-    # file = cfg.data['disprot'] + 'disprot_regions_residues.csv'
-    # df_residues.to_csv(file, mode='a',  header=(not os.path.exists(file)), sep='\t', index=False)
+    file = cfg.data['disprot'] + 'disprot_regions_residues.csv'
+    df_residues.to_csv(file, mode='a',  header=(not os.path.exists(file)), sep='\t', index=False)
 

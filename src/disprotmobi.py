@@ -60,3 +60,18 @@ def compress_features():
     df_new = df.groupby(['UniProt_id', 'residue', 'DisProt_id', 'term_id']).aggregate(aggregation_functions)
     file = cfg.data['merged'] + 'terms_features_compressed.csv'
     df_new.to_csv(file, mode='a', header=(not os.path.exists(file)), sep='\t', index=False)
+
+
+def add_sequence():
+    df = pd.read_csv(cfg.data['merged'] + 'terms_features_compressed.csv', sep='\t',  converters={'term_id': lambda x: str(x), 'sequence_length': lambda x: str(x)})
+    df_sequences = pd.read_csv(cfg.data['disprot'] + 'disprot_2021.csv', sep='\t',  converters={'term_id': lambda x: str(x), 'sequence_length': lambda x: str(x)})
+    residues_chars = []
+    for row in df.iterrows():
+        sequence = df_sequences.loc[(df_sequences['acc'] == row[1]['UniProt_id'])]['region_sequence'].iloc[0]
+        char = sequence[(int(row[1]['residue']) - 1)]
+        print(char)
+        print(row[1]['UniProt_id'])
+        residues_chars.append(char)
+    df['aminoacid'] = residues_chars
+    file = cfg.data['merged'] + 'terms_features_w_amino.csv'
+    df.to_csv(file, mode='a', header=(not os.path.exists(file)), sep='\t', index=False)

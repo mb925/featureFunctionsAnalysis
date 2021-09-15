@@ -6,7 +6,8 @@ import analyze as an
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    # pdi.json_to_csv()
+    # pdi.filter_tsv() # if input tsv
+    # pdi.json_to_csv() # if input json
     # pdi.start_end_to_residue()
     # pdi.all_uniprot_residues()
     # pmi.create_file_residues()
@@ -14,4 +15,6 @@ if __name__ == '__main__':
     # pmi.filter_residues_by_disprot_id()
     # dm.merge_terms_features()
     # dm.expanded_sequence_length()
-    an.intersection_union()
+    # dm.compress_features()
+    dm.add_sequence()
+    # an.intersection_union() # not needed
