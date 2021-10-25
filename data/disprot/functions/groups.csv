@@ -1,0 +1,39 @@
+GO_term	level	term_id	GO_term_id	group
+molecular function regulator	0	IDPO:00510	GO:0098772	molecular recognition effectors
+molecular function activator activity	1	IDPO:00511	GO:0140677	molecular recognition effectors
+molecular function inhibitor activity	1	IDPO:00512	GO:0140678	molecular recognition effectors
+DNA binding, bending	0	IDPO:00514	GO:0008301	molecular recognition effectors
+DNA duplex unwinding	0	IDPO:00513	GO:0032508	molecular recognition effectors
+RNA folding chaperone	0	IDPO:00524	GO:0140691	molecular recognition chaperones
+amyloid fibril formation	0	IDPO:00527	GO:1990000	biological condensation
+cellular water homeostasis	0	IDPO:00522	GO:0009992	molecular recognition scavengers
+entropic chain	0	IDPO:00501	none	passive
+flexible C-terminal tail	1	IDPO:00504	none	passive
+flexible N-terminal tail	1	IDPO:00503	none	passive
+flexible linker/spacer	1	IDPO:00502	none	passive
+intracellular non-membrane-bounded organelle	0	IDPO:00525	GO:0043232	biological condensation
+localization	0	IDPO:00518	GO:0051179	molecular recognition assemblers
+sequestering of metal ion	1	IDPO:00521	GO:0051238	molecular recognition scavengers
+molecular adaptor activity	0	IDPO:00517	GO:0060090	molecular recognition assemblers
+molecular condensate scaffold activity	0	IDPO:00526	GO:1990000	biological condensation
+molecular recognition display site	0	IDPO:00024	none	molecular recognition display site
+regulation of ADP-ribosylation	1	IDPO:00534	none	molecular recognition display site
+regulation of acetylation	1	IDPO:00526	none	molecular recognition display site
+regulation of fatty acylation	1	IDPO:00530	none	molecular recognition display site
+regulation of glycosylation	1	IDPO:00528	none	molecular recognition display site
+regulation of limited proteolysis	1	IDPO:00533	none	molecular recognition display site
+regulation of methylation	1	IDPO:00527	none	molecular recognition display site
+regulation of myristoylation	1	IDPO:00531	none	molecular recognition display site
+regulation of palmitoylation	1	IDPO:00532	none	molecular recognition display site
+regulation of phosphorylation	1	IDPO:00525	none	molecular recognition display site
+regulation of ubiquitination	1	IDPO:00529	none	molecular recognition display site
+molecular sequestering activity	0	IDPO:00519	GO:0140313	molecular recognition scavengers
+toxin sequestering activity	1	IDPO:00520	GO:0097351	molecular recognition scavengers
+protein folding chaperone	0	IDPO:00523	GO:0044183	molecular recognition chaperones
+protein sequestering activity	0	IDPO:00516	GO:0140311	molecular recognition effectors
+protein-containing complex disassembly	0	IDPO:00515	GO:0032984	molecular recognition effectors
+self-regulatory activity	0	IDPO:00505	none	self- functions
+self-activation	1	IDPO:00507	none	self- functions
+self-assembly	1	IDPO:00508	none	self- functions
+self-inhibition	1	IDPO:00506	none	self- functions
+toxin activity	0	IDPO:00528	GO:0090729	none

@@ -1,6 +1,6 @@
 # import csv
 import os
-# import numpy as np
+import matplotlib.pyplot as plt
 import pandas as pd
 import config as cfg
 
@@ -37,4 +37,26 @@ def intersection_union():
     df_merge.to_csv(file, mode='a', header=(not os.path.exists(file)), sep='\t', index=False)
     print(df)
 
+
+def aminoacid_composition_mean():
+    df = pd.read_csv(cfg.data['functions'] + 'amino_groups.csv', sep='\t',  converters={'term_id': lambda x: str(x)})
+    df = df.groupby(['char']).sum().reset_index()
+    total = str(df['size'].sum())
+    df_mean = pd.DataFrame()
+    df_mean['group'] = 'mean'
+    df_mean['char'] = df['char']
+    df_mean['size'] = df['size']
+    df_mean['total'] = total
+    print(df)
+
+
+def amino_count():
+    df = pd.read_csv(cfg.data['functions'] + 'amino_groups.csv', sep='\t',  converters={'term_id': lambda x: str(x)})
+    df = df[['group', 'char', 'size']].groupby(['group', 'char']).sum().reset_index()
+    df2 = df[['group', 'char', 'size']].groupby(['group']).sum().reset_index()
+    df2 = df2.rename(columns={"size": "total"})
+    df_merge = pd.merge(df, df2, how='inner', on=['group'])
+    file = cfg.data['functions'] + 'amino_count.csv'
+    df_merge.to_csv(file, mode='a', header=(not os.path.exists(file)), sep='\t', index=False)
+    print(df)
 

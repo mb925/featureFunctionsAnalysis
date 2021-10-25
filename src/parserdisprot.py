@@ -2,7 +2,6 @@ import os
 import pandas as pd
 import config as cfg
 import json
-import numpy as np
 from pandas import read_csv
 
 def filter_tsv():
@@ -22,7 +21,7 @@ def filter_tsv():
     print(df)
 
 def json_to_csv():
-    with open(cfg.data['disprot'] + 'disprot_regions.json') as json_file:
+    with open(cfg.data['disprot'] + 'disprot_2021.json') as json_file:
         data = json.load(json_file)
         df = pd.DataFrame()
         for el in data['data']:
@@ -87,10 +86,34 @@ def start_end_to_residue():
                 'DisProt_id': row['DisProt_id'],
                 'term_id': row['term_id'],
                 'residue': [r],
-                'sequence_length': [row['sequence_length']]
+                'sequence_length': [row['sequence_length']] ## need sequence length not fragment length
             })
             df_residues = df_residues.append(df_el)
             print(df_el)
     file = cfg.data['disprot'] + 'disprot_regions_residues.csv'
     df_residues.to_csv(file, mode='a',  header=(not os.path.exists(file)), sep='\t', index=False)
 
+def sequence_to_chars():
+    with open(cfg.data['disprot'] + 'disprot_2021.json') as json_file:
+        data = json.load(json_file)
+        df = pd.DataFrame()
+        uniprots, residues, chars, lengths = [], [], [], []
+        for el in data['data']:
+            uniprot_id = el['acc']
+            sequence = el['sequence']
+
+            for idx, res in enumerate(sequence):
+                print(idx)
+                print(res)
+
+                uniprots.append(uniprot_id)
+                residues.append(idx + 1)
+                chars.append(res)
+
+        df['UniProt_id'] = uniprots
+        df['residue'] = residues
+        df['char'] = chars
+        print(df)
+
+        file = cfg.data['disprot'] + 'disprot_residues.csv'
+        df.to_csv(file, mode='a',  header=(not os.path.exists(file)), sep='\t', index=False)
